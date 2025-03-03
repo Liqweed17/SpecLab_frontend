@@ -343,7 +343,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10,),
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/signin');

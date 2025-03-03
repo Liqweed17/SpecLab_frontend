@@ -343,6 +343,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10,),
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/signin');
@@ -351,7 +352,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           text: const TextSpan(
                             text: "Already Have An Account? ",
                             style: TextStyle(
-                              color: Color.fromARGB(255, 172, 6, 6),
+                              color: Color(0xFF131212),
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Alexandria-Light',

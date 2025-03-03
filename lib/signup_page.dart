@@ -351,7 +351,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           text: const TextSpan(
                             text: "Already Have An Account? ",
                             style: TextStyle(
-                              color: Color(0xFF131212),
+                              color: Color.fromARGB(255, 172, 6, 6),
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Alexandria-Light',

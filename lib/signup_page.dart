@@ -15,7 +15,14 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _confirmPasswordController = TextEditingController();
   bool _isPasswordMatch = true;
   bool _isFormValid = false;
-  bool _isEmailValid = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+  }
 
   void _validatePassword() {
     setState(() {
@@ -26,27 +33,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void _validateForm() {
     setState(() {
-      _isEmailValid = _validateEmail(_emailController.text);
-      _isFormValid = _isEmailValid &&
-          _emailController.text.isNotEmpty &&
+      _isFormValid = _emailController.text.isNotEmpty &&
           _passwordController.text.isNotEmpty &&
           _confirmPasswordController.text.isNotEmpty &&
           _isPasswordMatch;
     });
-  }
-
-  bool _validateEmail(String email) {
-    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-    return emailRegex.hasMatch(email);
-  }
-
-  void _showInvalidEmailNotification() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Please enter a valid email address'),
-        backgroundColor: Colors.red,
-      ),
-    );
   }
 
   void _showEmptyFieldsNotification() {
@@ -87,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 'assets/images/speclab.png',
               ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 250),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -122,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: TextField(
                           controller: _emailController,
                           decoration: const InputDecoration(
-                            hintText: "Email",
+                            hintText: "Username",
                             hintStyle: TextStyle(color: Color(0xFFB9B0B0),
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -132,14 +123,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           onChanged: (value) => _validateForm(),
                         ),
                       ),
-                      if (!_isEmailValid)
-                        const Padding(
-                          padding: EdgeInsets.only(top: 5, right: 170),
-                          child: Text(
-                            'Invalid email address',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
                       const SizedBox(height: 10,),
                       Container(
                         width: 333,
@@ -235,9 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         child: ElevatedButton(
                           onPressed: _isFormValid ? () {
-                            if (!_isEmailValid) {
-                              _showInvalidEmailNotification();
-                            } else if (_emailController.text.isEmpty || _passwordController.text.isEmpty || _confirmPasswordController.text.isEmpty) {
+                            if (_emailController.text.isEmpty || _passwordController.text.isEmpty || _confirmPasswordController.text.isEmpty) {
                               _showEmptyFieldsNotification();
                             } else {
                               Navigator.pushNamed(context, '/emailAdd');
@@ -260,85 +241,6 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Alexandria',
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 15,),
-                      const Text(
-                        "or continue with",
-                        style: TextStyle(
-                          color: Color(0xFF645E5E),
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Alexandria-Light',
-                        ),
-                      ),
-                      const SizedBox(height: 15,),
-                      Container(
-                        width: 333,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0xFF1877F2),
-                              Color(0xFF0E458C),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white,
-                          ),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              print("Continue with Google clicked");
-                            },
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                width: 1.3,
-                                color: Color(0xFF0E458C),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google_logo.png',
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(width: 10),
-                                ShaderMask(
-                                  shaderCallback: (Rect bounds) {
-                                    return const LinearGradient(
-                                      colors: [
-                                        Color(0xFF1877F2),
-                                        Color(0xFF0E458C),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ).createShader(bounds);
-                                  },
-                                  child: const Text(
-                                    "Google",
-                                    style: TextStyle(
-                                      color: Color(0xFF0E458C),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Alexandria',
-                                    ),
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ),

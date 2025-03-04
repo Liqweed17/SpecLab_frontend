@@ -72,8 +72,9 @@ class _SignInPageState extends State<SignInPage> {
                 'assets/images/speclab.png',
               ),
             ),
-            const SizedBox(height: 210),
-            Expanded(
+            const SizedBox(height: 320),
+            Flexible(
+              fit: FlexFit.tight,
               child: Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
@@ -87,7 +88,6 @@ class _SignInPageState extends State<SignInPage> {
                   child: Column(
                     children: <Widget>[
                       const SizedBox(height: 10),
-                      // Add "Sign In" text here
                       const Text(
                         "Sign In",
                         style: TextStyle(
@@ -96,7 +96,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Color(0xFF381E72),
                         ),
                       ),
-                      const SizedBox(height: 30,),
+                      const SizedBox(height: 20,),
                       Container(
                         width: 333,
                         height: 60,
@@ -221,85 +221,6 @@ class _SignInPageState extends State<SignInPage> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Alexandria',
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 15,),
-                      const Text(
-                        "or continue with",
-                        style: TextStyle(
-                          color: Color(0xFF645E5E),
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Alexandria-Light',
-                        ),
-                      ),
-                      const SizedBox(height: 15,),
-                      Container(
-                        width: 333,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0xFF1877F2),
-                              Color(0xFF0E458C),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white,
-                          ),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              print("Continue with Google clicked");
-                            },
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                width: 1.3,
-                                color: Color(0xFF0E458C),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google_logo.png', 
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(width: 10),
-                                ShaderMask(
-                                  shaderCallback: (Rect bounds) {
-                                    return const LinearGradient(
-                                      colors: [
-                                        Color(0xFF1877F2),
-                                        Color(0xFF0E458C),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ).createShader(bounds);
-                                  },
-                                  child: const Text(
-                                    "Google",
-                                    style: TextStyle(
-                                      color: Color(0xFF0E458C),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Alexandria',
-                                    ),
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ),

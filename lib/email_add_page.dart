@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard.dart';
 
 class EmailAddPage extends StatefulWidget {
   const EmailAddPage({super.key});
@@ -16,6 +17,12 @@ class _EmailAddPageState extends State<EmailAddPage> {
     setState(() {
       _isEmailValid = email.endsWith('@gmail.com');
     });
+    if (_isEmailValid) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const DashboardPage()),
+      );
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard.dart'; // Import the DashboardPage
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -202,6 +203,10 @@ class _SignInPageState extends State<SignInPage> {
                             } else if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
                               _showEmptyFieldsNotification();
                             } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const DashboardPage()),
+                              );
                               print("Login clicked");
                             }
                           } : () {
